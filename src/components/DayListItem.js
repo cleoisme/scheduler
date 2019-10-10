@@ -6,10 +6,9 @@ import "components/DayListItem.scss";
 // this component takes in
 // three attributes (name, spots, selected) and one action (setDay) as props
 export default function DayListItem(props) {
-  let dayClass = Classnames({
-    "day-list": true,
-    "__item--selected": props.selected,
-    "__item--full": !props.spots
+  let dayClass = Classnames("day-list__item", {
+    "day-list__item--selected": props.selected,
+    "day-list__item--full": !props.spots
   });
   return (
     <li className={dayClass} onClick={() => props.setDay(props.name)}>
