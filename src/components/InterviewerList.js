@@ -11,8 +11,8 @@ export default function InterviewerList(props) {
         key={interviewer.id}
         avatar={interviewer.avatar}
         name={interviewer.name}
-        selected={interviewer.name === props.interviewer}
-        setInterviewer={props.setInterviewer}
+        selected={interviewer.id === props.interviewer}
+        setInterviewer={() => props.setInterviewer(interviewer.id)}
       />
     );
   });
