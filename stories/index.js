@@ -5,6 +5,7 @@ import { action } from "@storybook/addon-actions";
 
 import "index.scss";
 
+import Appointment from "components/Appointment";
 import Button from "components/Button";
 import DayList from "components/DayList";
 import DayListItem from "components/DayListItem";
@@ -126,3 +127,10 @@ storiesOf("InterviewerList", module)
       setInterviewer={action("setInterviewer")}
     />
   ));
+
+storiesOf("Appointment", module)
+  .addParameters({
+    backgrounds: [{ name: "white", value: "#fff", default: true }]
+  })
+  .add("Appointment", () => <Appointment />)
+  .add("Appointment with Time", () => <Appointment time="12pm" />);
