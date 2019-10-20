@@ -2,7 +2,9 @@
   "name": "scheduler",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8001",
   "dependencies": {
+    "axios": "^0.19.0",
     "classnames": "^2.2.6",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
@@ -46,5 +48,17 @@
     "watchPathIgnorePatterns": [
       "<rootDir>/node_modules/"
     ]
-  }
+  },
+  "description": "## Setup",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CleoZhang/scheduler.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CleoZhang/scheduler/issues"
+  },
+  "homepage": "https://github.com/CleoZhang/scheduler#readme"
 }

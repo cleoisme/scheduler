@@ -1,26 +1,10 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
+import Axios from "axios";
 
 import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "./Appointment";
 
-const days = [
-  {
-    id: 1,
-    name: "Monday",
-    spots: 2
-  },
-  {
-    id: 2,
-    name: "Tuesday",
-    spots: 5
-  },
-  {
-    id: 3,
-    name: "Wednesday",
-    spots: 0
-  }
-];
 const appointments = [
   {
     id: 1,
@@ -78,6 +62,12 @@ const appointments = [
 
 export default function Application(props) {
   let [day, setDay] = useState("Monday");
+  let [days, setDays] = useState([]);
+
+  useEffect(() => {
+    Axios.get(`/api/days`).then(res => setDays(res.data));
+  }, []);
+
   return (
     <main className="layout">
       <section className="sidebar">
@@ -98,12 +88,12 @@ export default function Application(props) {
       </section>
       <section className="schedule">
         {/* common pattern is for a component to return a list of children. Take this example React snippet: */}
-        <Fragment>
+        <>
           {appointments.map(appointment => (
             <Appointment key={appointment.id} {...appointment} />
           ))}
           <Appointment key={"last"} time={"12pm"} />
-        </Fragment>
+        </>
       </section>
     </main>
   );
