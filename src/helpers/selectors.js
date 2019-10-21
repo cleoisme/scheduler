@@ -1,17 +1,16 @@
 export function getAppointmentsForDay(state, day) {
-  if (!state.days || !state.appointments) return [];
+  const { days, appointments } = state;
+  if (days.length === 0 || appointments.length === 0) return [];
 
   let IDs = [];
-  let appointments = [];
+  let appointmentsArr = [];
 
-  state.days.forEach(item => {
-    if (item.name === day) {
-      IDs = item.appointments;
-    }
-  });
+  for (let item of days) {
+    if (item.name === day) IDs = item.appointments;
+  }
 
   for (let id of IDs) {
-    if (state.appointments[id]) appointments.push(state.appointments[id]);
+    if (appointments[id]) appointmentsArr.push(appointments[id]);
   }
-  return appointments;
+  return appointmentsArr;
 }
