@@ -1,6 +1,6 @@
 export function getAppointmentsForDay(state, day) {
   const { days, appointments } = state;
-  if (days.length === 0 || appointments.length === 0) return [];
+  if (!days || !appointments) return [];
 
   let IDs = [];
   let appointmentsArr = [];
@@ -13,4 +13,15 @@ export function getAppointmentsForDay(state, day) {
     if (appointments[id]) appointmentsArr.push(appointments[id]);
   }
   return appointmentsArr;
+}
+
+export function getInterview(state, interview) {
+  if (!interview) return null;
+  const { interviewers } = state;
+  const { student, interviewer } = interview;
+
+  return {
+    interviewer: interviewers[interviewer],
+    student: student
+  };
 }

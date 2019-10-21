@@ -5,21 +5,26 @@ import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "./Appointment";
 
-import { getAppointmentsForDay } from "../helpers/selectors";
+import { getAppointmentsForDay, getInterview } from "../helpers/selectors";
 
 export default function Application(props) {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
-    appointments: []
+    appointments: [],
+    interviewers: []
   });
 
   const setDay = day => setState({ ...state, day });
 
   useEffect(() => {
-    Promise.all([Axios.get("/api/days"), Axios.get("/api/appointments")]).then(
-      ([{ data: days }, { data: appointments }]) => {
-        setState(prev => ({ ...prev, days, appointments }));
+    Promise.all([
+      Axios.get("/api/days"),
+      Axios.get("/api/appointments"),
+      Axios.get("/api/interviewers")
+    ]).then(
+      ([{ data: days }, { data: appointments }, { data: interviewers }]) => {
+        setState(prev => ({ ...prev, days, appointments, interviewers }));
       }
     );
   }, []);
@@ -46,7 +51,12 @@ export default function Application(props) {
         {/* common pattern is for a component to return a list of children. Take this example React snippet: */}
         <>
           {getAppointmentsForDay(state, state.day).map(appointment => (
-            <Appointment key={appointment.id} {...appointment} />
+            <Appointment
+              key={appointment.id}
+              id={appointment.id}
+              time={appointment.time}
+              interview={getInterview(state, appointment.interview)}
+            />
           ))}
           <Appointment key={"last"} time={"12pm"} />
         </>
