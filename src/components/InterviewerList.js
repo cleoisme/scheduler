@@ -5,14 +5,14 @@ import "components/InterviewerList.scss";
 import InterviewerListItem from "components/InterviewerListItem";
 
 export default function InterviewerList(props) {
-  // control components ?????????
+  const { interviewers } = props;
   InterviewerList.propTypes = {
     value: PropTypes.number,
     onChange: PropTypes.func.isRequired
   };
   // Array.map() will return another Array
   // so in this case, this will be an array of InterviewerListItem
-  let interviewerListItems = props.interviewers.map(interviewer => {
+  let interviewerListItems = interviewers.map(interviewer => {
     return (
       <InterviewerListItem
         key={interviewer.id}

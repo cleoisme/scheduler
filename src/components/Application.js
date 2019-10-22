@@ -12,7 +12,7 @@ export default function Application(props) {
     day: "Monday",
     days: [],
     appointments: [],
-    interviewers: []
+    interviewers: {}
   });
 
   const setDay = day => setState({ ...state, day });
