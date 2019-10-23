@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
 
 import "components/Application.scss";
@@ -56,6 +56,7 @@ export default function Application(props) {
               id={appointment.id}
               time={appointment.time}
               interview={getInterview(state, appointment.interview)}
+              interviewers={state.interviewers}
             />
           ))}
           <Appointment key={"last"} time={"12pm"} />
