@@ -1,7 +1,7 @@
 export function getAppointmentsForDay(state, day) {
   const { days, appointments } = state;
   if (!days || !appointments) return [];
-  // console.log(state.interviewers);
+
   let IDs = [];
   let appointmentsArr = [];
 
@@ -14,6 +14,19 @@ export function getAppointmentsForDay(state, day) {
   }
 
   return appointmentsArr;
+}
+
+export function getInterviewersForDay(state, day) {
+  const { days, interviewers } = state;
+  if (!days || !interviewers) return [];
+
+  let interviewersArr = [];
+
+  for (let item of days) {
+    if (item.name === day) interviewersArr = item.interviewers;
+  }
+
+  return interviewersArr;
 }
 
 export function getInterview(state, interview) {
