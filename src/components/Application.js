@@ -42,9 +42,8 @@ export default function Application(props) {
       [id]: appointment
     };
 
-    setState({
-      ...state,
-      appointments
+    return Axios.put(`/api/appointments/${id}`, appointment).then(response => {
+      if (response.status === 204) setState({ ...state, appointments });
     });
   };
 
