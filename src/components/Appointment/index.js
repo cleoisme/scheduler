@@ -22,6 +22,15 @@ export default function Appointment(props) {
     interviewersArr.push(interviewers[i]);
   }
 
+  const save = (name, interviewer) => {
+    const interview = {
+      student: name,
+      interviewer
+    };
+
+    props.bookInterview(props.id, interview);
+  };
+
   return (
     <article className="appointment">
       <Header time={props.time} />
@@ -39,11 +48,7 @@ export default function Appointment(props) {
         />
       )}
       {mode === CREATE && (
-        <Form
-          interviewers={interviewersArr}
-          onSave={props.onSave}
-          onCancel={back}
-        />
+        <Form interviewers={interviewersArr} onSave={save} onCancel={back} />
       )}
     </article>
   );

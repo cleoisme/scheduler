@@ -29,6 +29,10 @@ export default function Application(props) {
     );
   }, []);
 
+  const bookInterview = (id, interview) => {
+    console.log(id, interview);
+  };
+
   return (
     <main className="layout">
       <section className="sidebar">
@@ -57,6 +61,7 @@ export default function Application(props) {
               time={appointment.time}
               interview={getInterview(state, appointment.interview)}
               interviewers={state.interviewers}
+              bookInterview={bookInterview}
             />
           ))}
           <Appointment key={"last"} time={"12pm"} />
