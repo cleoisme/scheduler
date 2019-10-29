@@ -29,31 +29,22 @@ export default function Application(props) {
     );
   }, []);
 
+  // we should not remove / add the appointment object itself
+  // but we need to update the object props
+  // ** define state: we are updating the state of the specific appointment component without changing the overview look **
+  // after we update the remote data, the state is automatically update
+  // so we do not have to re-update the state again
   const bookInterview = (id, interview) => {
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
     };
 
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    };
-
-    return Axios.put(`/api/appointments/${id}`, appointment).then(response => {
-      if (response.status === 204) setState({ ...state, appointments });
-    });
+    return Axios.put(`/api/appointments/${id}`, appointment);
   };
 
   const cancelInterview = id => {
-    const appointments = state.appointments;
-    delete appointments[id];
-
-    return Axios.delete(`/api/appointments/${id}`).then(response => {
-      if (response.status === 204) {
-        setState({ ...state, appointments });
-      }
-    });
+    return Axios.delete(`/api/appointments/${id}`);
   };
 
   return (
