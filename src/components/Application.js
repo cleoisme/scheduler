@@ -30,8 +30,6 @@ export default function Application(props) {
   }, []);
 
   const bookInterview = (id, interview) => {
-    console.log(id, interview);
-
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -44,6 +42,17 @@ export default function Application(props) {
 
     return Axios.put(`/api/appointments/${id}`, appointment).then(response => {
       if (response.status === 204) setState({ ...state, appointments });
+    });
+  };
+
+  const cancelInterview = id => {
+    const appointments = state.appointments;
+    delete appointments[id];
+
+    return Axios.delete(`/api/appointments/${id}`).then(response => {
+      if (response.status === 204) {
+        setState({ ...state, appointments });
+      }
     });
   };
 
@@ -76,6 +85,7 @@ export default function Application(props) {
               interview={getInterview(state, appointment.interview)}
               interviewers={state.interviewers}
               bookInterview={bookInterview}
+              cancelInterview={cancelInterview}
             />
           ))}
           <Appointment key={"last"} time={"12pm"} />
