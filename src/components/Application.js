@@ -40,11 +40,30 @@ export default function Application(props) {
       interview: { ...interview }
     };
 
-    return Axios.put(`/api/appointments/${id}`, appointment);
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    return Axios.put(`/api/appointments/${id}`, appointment)
+      .then(() => setState({ ...state, appointments }))
+      .catch(error => console.log(error));
   };
 
   const cancelInterview = id => {
-    return Axios.delete(`/api/appointments/${id}`);
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    return Axios.delete(`/api/appointments/${id}`)
+      .then(() => setState({ ...state, appointments }))
+      .catch(error => console.log(error));
   };
 
   return (

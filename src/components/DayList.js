@@ -1,17 +1,17 @@
 import React from "react";
 import DayListItem from "./DayListItem";
 
-// this component takes in
-// three attributes (name, spots, selected) and one action (setDay) as props
 export default function DayList(props) {
-  return props.days.map(day => {
+  const { days, setDay, day } = props;
+
+  return days.map(d => {
     return (
       <DayListItem
-        key={day.id}
-        name={day.name}
-        spots={day.spots}
-        selected={day.name === props.day}
-        setDay={props.setDay}
+        key={d.id}
+        name={d.name}
+        spots={d.spots}
+        selected={d.name === day}
+        setDay={setDay}
       />
     );
   });
