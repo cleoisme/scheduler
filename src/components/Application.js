@@ -98,7 +98,6 @@ export default function Application(props) {
               cancelInterview={cancelInterview}
             />
           ))}
-          <Appointment key={"last"} time={"12pm"} />
         </>
       </section>
     </main>

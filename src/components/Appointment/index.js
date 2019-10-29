@@ -62,8 +62,7 @@ export default function Appointment(props) {
       )}
       {mode === SHOW && (
         <Show
-          student={interview.student}
-          interviewer={interview.interviewer}
+          interview={interview}
           onDelete={() => {
             transition(CONFIRM);
           }}
@@ -74,7 +73,12 @@ export default function Appointment(props) {
       )}
       {mode === SAVING && <Status message={"Saving"} />}
       {mode === CREATE && (
-        <Form interviewers={interviewersArr} onSave={save} onCancel={back} />
+        <Form
+          interviewers={interviewersArr}
+          onSave={save}
+          onCancel={back}
+          interview={interview}
+        />
       )}
       {mode === DELETING && <Status message={"Deleting"} />}
       {mode === CONFIRM && (

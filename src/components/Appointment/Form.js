@@ -4,11 +4,9 @@ import Button from "../Button";
 
 export default function Form(props) {
   const { interviewers, onSave, onCancel, interview, id } = props;
-
-  const [name, setName] = useState(interview.student || "");
-  const [interviewer, setInterviewer] = useState(
-    interview.interviewer.id || null
-  );
+  console.log(props);
+  const [name, setName] = useState(interview || "");
+  const [interviewer, setInterviewer] = useState(interview || null);
 
   const reset = () => {
     setName("");
