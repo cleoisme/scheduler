@@ -6,9 +6,7 @@ export default function useVisualMode(initial) {
 
   function transition(newMode, replace = false) {
     setMode(newMode);
-    if (replace === true) {
-      history.pop();
-    }
+    if (replace === true) history.pop();
     setHistory([...history, newMode]);
   }
 

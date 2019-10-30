@@ -7,7 +7,7 @@ import Appointment from "./Appointment";
 
 import { getAppointmentsForDay, getInterview } from "../helpers/selectors";
 
-export default function Application(props) {
+export default function Application() {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
@@ -35,6 +35,7 @@ export default function Application(props) {
   // after we update the remote data, the state is automatically update
   // so we do not have to re-update the state again
   const bookInterview = (id, interview) => {
+    console.log(id);
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }

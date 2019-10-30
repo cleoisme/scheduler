@@ -1,17 +1,19 @@
 import React from "react";
 
 export default function Show(props) {
-  const { interviewer, student, onEdit, onDelete } = props;
+  const { interview, onEdit, onDelete } = props;
 
   return (
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">
-        <h2 className="text--regular">{student}</h2>
+        <h2 className="text--regular">{interview.student}</h2>
         <section className="interviewer">
           <h4 className="text--light">Interviewer</h4>
-          {interviewer === undefined && <h3 className="text--regular">{}</h3>}
-          {interviewer !== undefined && (
-            <h3 className="text--regular">{interviewer.name}</h3>
+          {interview.interviewer === undefined && (
+            <h3 className="text--regular">{}</h3>
+          )}
+          {interview.interviewer !== undefined && (
+            <h3 className="text--regular">{interview.interviewer.name}</h3>
           )}
         </section>
       </section>

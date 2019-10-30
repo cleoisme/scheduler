@@ -30,6 +30,7 @@ export function getInterviewersForDay(state, day) {
 }
 
 export function getInterview(state, interview) {
+  // may update the null to other default value with same struct
   if (!interview) return null;
   const { interviewers } = state;
   const { student, interviewer } = interview;

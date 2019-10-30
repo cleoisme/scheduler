@@ -36,15 +36,14 @@ export default function Appointment(props) {
     interviewersArr.push(interviewers[i]);
   }
 
-  const save = (name, interviewer, id) => {
+  const save = (name, interviewer) => {
     const interview = {
       student: name,
       interviewer
     };
+
     transition(SAVING);
-    bookInterview(id, interview)
-      .then(() => transition(SHOW))
-      .catch(() => transition(ERROR_SAVE, true));
+    bookInterview(id, interview).then(() => transition(SHOW));
   };
 
   const remove = () => {
@@ -98,7 +97,6 @@ export default function Appointment(props) {
           onSave={save}
           onCancel={back}
           interview={interview}
-          id={id}
         />
       )}
     </article>

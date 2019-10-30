@@ -3,8 +3,9 @@ import InterviewerList from "../InterviewerList";
 import Button from "../Button";
 
 export default function Form(props) {
-  const { interviewers, onSave, onCancel, interview, id } = props;
+  const { interviewers, onSave, onCancel, interview } = props;
   console.log(props);
+
   const [name, setName] = useState(interview || "");
   const [interviewer, setInterviewer] = useState(interview || null);
 
@@ -24,7 +25,7 @@ export default function Form(props) {
         <form autoComplete="off" onSubmit={event => event.preventDefault()}>
           <input
             className="appointment__create-input text--semi-bold"
-            value={name}
+            value={name.student}
             type="text"
             placeholder="Enter Student Name"
             onChange={event => setName(event.target.value)}
@@ -32,8 +33,10 @@ export default function Form(props) {
         </form>
         <InterviewerList
           interviewers={interviewers}
-          value={interviewer}
-          onChange={setInterviewer}
+          value={interviewer.interviewer.id}
+          onChange={event => {
+            setInterviewer(event.target.value);
+          }}
         />
       </section>
       <section className="appointment__card-right">
@@ -44,7 +47,7 @@ export default function Form(props) {
           <Button
             confirm
             onClick={() => {
-              onSave(name, interviewer, id);
+              onSave(name.student, interviewer.interviewer.id);
             }}
           >
             Save
