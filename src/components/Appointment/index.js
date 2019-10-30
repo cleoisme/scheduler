@@ -41,17 +41,17 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
-    transition("SAVING");
+    transition(SAVING);
     bookInterview(id, interview)
-      .then(() => transition("SHOW"))
-      .catch(() => transition("ERROR_SAVE", true));
+      .then(() => transition(SHOW))
+      .catch(() => transition(ERROR_SAVE, true));
   };
 
   const remove = () => {
-    transition("DELETING");
+    transition(DELETING);
     cancelInterview(id)
-      .then(() => transition("EMPTY"))
-      .catch(() => transition("ERROR_SAVE", true));
+      .then(() => transition(EMPTY))
+      .catch(() => transition(ERROR_DELETE, true));
   };
 
   return (
