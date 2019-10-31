@@ -80,7 +80,7 @@ export default function Appointment(props) {
           interviewers={interviewersArr}
           onSave={save}
           onCancel={back}
-          interview={interview}
+          // interview={interview}
         />
       )}
       {mode === DELETING && <Status message={"Deleting"} />}
@@ -96,7 +96,8 @@ export default function Appointment(props) {
           interviewers={interviewersArr}
           onSave={save}
           onCancel={back}
-          interview={interview}
+          student={interview.student}
+          interviewerId={interview.interviewer.id}
         />
       )}
     </article>
