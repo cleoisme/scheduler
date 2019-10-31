@@ -3,23 +3,28 @@ import Axios from "axios";
 
 export default function useApplicationData() {
   const SET_DAY = "SET_DAY";
-  const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
+  const SET_APPLICATION = "SET_APPLICATION";
   const SET_INTERVIEW = "SET_INTERVIEW";
 
   function reducer(state, action) {
     switch (action.type) {
       case SET_DAY:
         return { ...state, day: action.value };
-      case SET_APPLICATION_DATA:
+
+      case SET_APPLICATION:
         return {
           ...state,
           days: action.days,
           appointments: action.appointments,
           interviewers: action.interviewers
         };
-      case SET_INTERVIEW: {
-        return; /* insert logic */
-      }
+
+      case SET_INTERVIEW:
+        return {
+          ...state,
+          appointments: action.value
+        };
+
       default:
         throw new Error(
           `Tried to reduce with unsupported action type: ${action.type}`
@@ -83,7 +88,7 @@ export default function useApplicationData() {
     ]).then(
       ([{ data: days }, { data: appointments }, { data: interviewers }]) => {
         dispatch({
-          type: SET_APPLICATION_DATA,
+          type: SET_APPLICATION,
           days,
           appointments,
           interviewers

@@ -4,7 +4,6 @@ import Button from "../Button";
 
 export default function Form(props) {
   const { interviewers, onSave, onCancel, interviewerId, student } = props;
-  console.log(props);
 
   const [name, setName] = useState(student || "");
   const [interviewer, setInterviewer] = useState(interviewerId || null);
